@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <script>
+
+        function editarTarefa(){
+            var resp = confirm("Você tem certeza que quer editar a tarefa?");
+            const element = document.getElementById("tarefa1");
+            var resp = prompt("Informe como você quer renomear a tarefa: ")
+            element.innerHTML = resp;
+        }
+    </script>
+</head>
+<body>
+    <div id="Lista">
+        <fieldset>
+            <legend>Tarefas A Fazer</legend>
+
+            <div>
+                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <label for="tarefa1">Estudar para prova de Matemática Discreta</label>
+                <button type="button" onclick="editarTarefa();">Editar</button>
+            </div>
+            <div>
+                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <label for="tarefa1">Fazer os exercícios de Algoritimos</label>
+                <button type="button" onclick="editarTarefa();">Editar</button>
+            </div>
+            <div>
+                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <label for="tarefa1">Fazer o trabalho de Desenvolvimento Web</label>
+                <button type="button" onclick="editarTarefa();">Editar</button>
+            </div>
+        </fieldset>
+        <div id="tarefas_concluidas">
+            <h1 id="Titulos">Tarefas Concluídas</h1>
+            <p id="tarefas">Gravar o vídeo do trabalho de IHC</p>
+            <p id="tarefas">Apresentar o trabalho de IHC</p>
+            <p id="tarefas">Apresentar o trabalho de FENS</p>
+        </div> 
+    </div>
+</body>
+</html>
