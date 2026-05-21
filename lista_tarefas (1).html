@@ -4,43 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tarefas</title>
+    <style>
+        .concluida {
+            text-decoration: line-through;
+            color: gray;
+        }
+    </style>
     <script>
 
-        function editarTarefa(){
-            var resp = confirm("Você tem certeza que quer editar a tarefa?");
-            const element = document.getElementById("tarefa1");
-            var resp = prompt("Informe como você quer renomear a tarefa: ")
-            element.innerHTML = resp;
+        function editarTarefa(label) {
+            let novoNome = prompt("Informe o novo nome da tarefa:");
+            if (novoNome != null && novoNome != "") {
+                label.innerHTML = novoNome;
+            }
         }
+        function removerTarefa(botao) {
+            let resp = confirm("Você tem certeza que deseja remover?");
+            if (resp == true) {
+                botao.parentElement.remove();
+            }
+        }
+        function concluirTarefa(checkbox, label) {
+            if (checkbox.checked) {
+                label.classList.add("concluida");
+            } else {
+                label.classList.remove("concluida");
+            }
+        }
+        function adicionarTarefa() {
+            let texto = prompt("Digite a nova tarefa:");
+            if (texto == null || texto == "") {
+                return;
+            }
+            let lista = document.getElementById("lista");
+
+            let div = document.createElement("div");
+
+            let checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            let label = document.createElement("label");
+            label.innerHTML = texto;
+
+            checkbox.onclick = function() {
+                concluirTarefa(checkbox, label);
+            };
+
+            let botaoEditar = document.createElement("button");
+            botaoEditar.innerHTML = "Editar";
+
+            botaoEditar.onclick = function() {
+                editarTarefa(label);
+            };
+
+            let botaoRemover = document.createElement("button");
+            botaoRemover.innerHTML = "Remover";
+
+            botaoRemover.onclick = function() {
+                removerTarefa(botaoRemover);
+            };
+
+            div.appendChild(checkbox);
+            div.appendChild(label);
+            div.appendChild(botaoEditar);
+            div.appendChild(botaoRemover);
+
+            lista.appendChild(div);
+        }
+
     </script>
 </head>
 <body>
-    <div id="Lista">
+    <div id="lista">
         <fieldset>
             <legend>Tarefas A Fazer</legend>
 
+            <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+
             <div>
-                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
                 <label for="tarefa1">Estudar para prova de Matemática Discreta</label>
-                <button type="button" onclick="editarTarefa();">Editar</button>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
             </div>
             <div>
-                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
                 <label for="tarefa1">Fazer os exercícios de Algoritimos</label>
-                <button type="button" onclick="editarTarefa();">Editar</button>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
             </div>
             <div>
-                <input type="checkbox" id="tarefas" name="tarefa1" checked />
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
                 <label for="tarefa1">Fazer o trabalho de Desenvolvimento Web</label>
-                <button type="button" onclick="editarTarefa();">Editar</button>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
+            </div>
+            <div>
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
+                <label for="tarefa1">Gravar o vídeo do trabalho de IHC</label>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
+            </div>
+            <div>
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
+                <label for="tarefa1">Apresentar o trabalho de IHC</label>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
+            </div>
+            <div>
+                <input type="checkbox" onclick="concluirTarefa(this, this.nextElementSibling)">
+                <label for="tarefa1">Apresentar o trabalho de FENS</label>
+                <button onclick="editarTarefa(this.previousElementSibling)">Editar</button>
+                <button onclick="removerTarefa(this)">Remover</button>
             </div>
         </fieldset>
-        <div id="tarefas_concluidas">
-            <h1 id="Titulos">Tarefas Concluídas</h1>
-            <p id="tarefas">Gravar o vídeo do trabalho de IHC</p>
-            <p id="tarefas">Apresentar o trabalho de IHC</p>
-            <p id="tarefas">Apresentar o trabalho de FENS</p>
-        </div> 
     </div>
 </body>
 </html>
